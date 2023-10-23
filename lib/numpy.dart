@@ -1,4 +1,6 @@
-const PI = 3.14159265358979323846264338327950288419716939937510;
+import "dart:math";
+
+const PI = 3.1415926535897932384626433832795028;
 const EULER = 2.7182818284590452353602874713527;
 
 
@@ -42,7 +44,6 @@ List<num> arange({ num start = 0, num? stop, num step  = 1, bool includeStop = f
   if (step == 0) {
     throw ArgumentError("`step` argument couldn't be 0.");
   }
-  print("--> ${start} | ${stop} | ${step}");
 
   stop = stop ?? start;
 
@@ -61,4 +62,21 @@ List<num> arange({ num start = 0, num? stop, num step  = 1, bool includeStop = f
   }
 
   return result;
+}
+
+
+
+class Vector {
+  num x = 2;
+  num y = 1;
+
+  Vector([num? x, num? y]){
+    this.x = x ?? 0;
+    this.y = y ?? 0;
+  }
+
+  num abs() {
+    var abs_ = sqrt(pow(this.x, 2) + pow(this.y, 2));
+    return abs_;
+  }
 }
