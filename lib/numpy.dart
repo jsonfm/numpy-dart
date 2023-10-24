@@ -80,3 +80,75 @@ class Vector {
     return abs_;
   }
 }
+
+
+class Complex {
+  num real;
+  num imag ;
+
+  Complex([this.real = 0, this.imag = 0]);
+
+  Complex operator *(num k) {
+    return Complex(real * k, imag * k);
+  }
+
+  Complex operator +(Complex other) {
+    var newReal = real + other.real;
+    var newImag = imag + other.imag;
+    return Complex(newReal, newImag);
+  }
+
+  static Complex polar(num amplitude, num phase){
+    var a = amplitude * cos(phase);
+    var b = amplitude * sin(phase);
+    return Complex(a, b);
+  }
+
+  @override
+  String toString() {
+    String string = "${real.toStringAsFixed(4)} + ${imag.toStringAsExponential(4)}j";
+    return string;
+  }
+
+  double abs() {
+    var abs_ = sqrt(pow(real, 2) + pow(imag, 2));
+    return abs_;
+  }
+
+  double phase() {
+    var phase = atan2(imag, real);
+    return phase;
+  }
+
+  String exp() {
+    var amplitude = abs();
+    var phi = phase();
+    var string = "${amplitude.toStringAsFixed(4)} . exp(${phi.toStringAsFixed(4)}j)";
+    return string;
+  }
+
+}
+
+
+List<Complex> dft(List<num> array){
+
+  var N = array.length;
+  List<Complex> results = [];
+
+  for(var k = 0; k <= N - 1; k++){
+      var sum_ = Complex(0, 0);
+
+      for(var n=0; n <= N - 1; n++){
+        var xn = array[n];
+        var phase = - (2 * PI * k * n) / N;
+        var complex = Complex.polar(xn, phase);
+
+        sum_ += complex;
+      
+      }
+
+      results.add(sum_);
+  }
+
+  return results;
+}

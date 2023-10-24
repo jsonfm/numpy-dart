@@ -32,5 +32,29 @@ print("dt: ${dt}");
 
 ```
 
+### Complex
+```dart
+import 'package:numpy/numpy.dart' as np;
+
+var a = np.Complex(1, 1);
+var b = np.Complex(1, 2);
+var c = np.Complex.polar(1.4142, 0.7854);
+
+print(a);
+print(a.phase());
+print(a * 2);
+print(a.exp());
+print(a + b);
+print(c);
+```
 
 
+### DFT
+Discrete Fourier Transform:
+```dart
+import 'package:numpy/numpy.dart' as np;
+
+var array = [1, 2, 3];
+var dft = np.dft(array);
+print(dft);
+```
